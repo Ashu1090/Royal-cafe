@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Royal Cafe - Pallavaram | Smart Order Menu</title>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="fixed-navbar">
+  <div class="nav-container">
+    <div class="nav-logo">☕ Royal Cafe Pallavaram</div>
+    <div class="nav-controls">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Search...">
+      </div>
+      <div class="category-dropdown">
+        <select id="categoryFilterSelect">
+          <option value="all">📋 All</option>
+          <option value="Tea Varieties">🍃 Tea</option>
+          <option value="Coffee">☕ Coffee</option>
+          <option value="Milkshakes">🥤 Shakes</option>
+          <option value="Snacks">🍟 Snacks</option>
+          <option value="Sandwich">🥪 Sandwich</option>
+          <option value="Ice Cream">🍨 Ice Cream</option>
+        </select>
+      </div>
+      <div class="order-badge" id="openOrderPanelBtn">🛒 <span id="cartCount">0</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-wrapper">
+  <div class="hero-header">
+    <h1>☕ Royal Cafe 🍔 Pallavaram 🍨</h1>
+    <p>Freshly Brewed Happiness & Delicious Snacks</p>
+  </div>
+
+  <div class="active-category-banner" id="activeCategoryBanner">
+    🍽️ Currently viewing: <span id="selectedCategoryName">All Items</span>
+  </div>
+
+  <div class="menu-content" id="menuContainer"></div>
+
+  <div class="footer">
+    <p>☕ <strong>Royal Cafe</strong> - Freshly Brewed Happiness ☕</p>
+    <p>📍 Pallavaram | 📞 +91 9876543210</p>
+  </div>
+</div>
+
+<div class="order-panel" id="orderPanel">
+  <div class="order-header" id="toggleOrderPanel">
+    <span>📋 Your Order</span>
+    <span>🛒</span>
+  </div>
+  <div class="order-list" id="orderListContainer">
+    <div class="empty-msg">Cart is empty</div>
+  </div>
+</div>
+
+<button class="top-btn" id="topBtn">↑</button>
+
+<!-- External JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
