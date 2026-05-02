@@ -22,10 +22,19 @@ const menuData = [
   { name: "Ice Cream Sundae", price: 90, category: "Ice Cream", section: "Snacks & Desserts" }
 ];
 
-// Cart state: { name, price, quantity }
-let cart = [];
+const categoryImages = {
+  "Tea Varieties": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format",
+  "Coffee": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format",
+  "Milkshakes": "https://images.unsplash.com/photo-1577805947697-89e18249d767?q=80&w=600&auto=format",
+  "Snacks": "https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=600&auto=format",
+  "Sandwich": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2FuZHdpY2h8ZW58MHx8MHx8fDA%3D",
+  "Ice Cream": "https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?q=80&w=600&auto=format"
+};
 
-// DOM elements
+function getCategoryImage(category) {
+  return categoryImages[category] || "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format";
+}
+
 const menuContainer = document.getElementById('menuContainer');
 const categorySelect = document.getElementById('categoryFilterSelect');
 const searchInput = document.getElementById('searchInput');
@@ -34,12 +43,12 @@ const cartCountSpan = document.getElementById('cartCount');
 const orderListContainer = document.getElementById('orderListContainer');
 const openOrderPanelBtn = document.getElementById('openOrderPanelBtn');
 
-// Save cart to localStorage
+let cart = [];
+
 function saveCart() {
   localStorage.setItem('royalCafeCart', JSON.stringify(cart));
 }
 
-// Load cart from localStorage
 function loadCart() {
   const saved = localStorage.getItem('royalCafeCart');
   if (saved) {
@@ -48,7 +57,6 @@ function loadCart() {
   }
 }
 
-// Update cart UI with quantity controls
 function updateCartUI() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   cartCountSpan.innerText = totalItems;
@@ -79,7 +87,6 @@ function updateCartUI() {
   html += `<div class="total-row"><span>💰 Total Amount:</span><span>₹${totalPrice}</span></div>`;
   orderListContainer.innerHTML = html;
 
-  // Attach quantity events
   document.querySelectorAll('.plus-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const name = btn.getAttribute('data-name');
@@ -116,36 +123,32 @@ function addToCart(itemName, itemPrice) {
     cart.push({ name: itemName, price: itemPrice, quantity: 1 });
   }
   updateCartUI();
-  // Flash feedback
   const badge = openOrderPanelBtn;
   badge.style.transform = 'scale(1.1)';
   setTimeout(() => badge.style.transform = '', 200);
 }
 
-// Render menu with smart ordering: selected category items on TOP
 function renderMenu() {
   const selectedCat = categorySelect.value;
   const searchTerm = searchInput.value.toLowerCase().trim();
 
-  // Update banner text
   let displayCat = selectedCat === 'all' ? 'All Items' : selectedCat;
   selectedCategorySpan.innerText = displayCat;
 
-  // Filter items based on search & category
   let filteredItems = menuData.filter(item => {
     const matchesSearch = searchTerm === '' || item.name.toLowerCase().includes(searchTerm);
     const matchesCategory = (selectedCat === 'all') || (item.category === selectedCat);
     return matchesSearch && matchesCategory;
   });
 
-  // Group by section
-  const beveragesItems = filteredItems.filter(i => i.section === 'Beverages');
-  const snacksItems = filteredItems.filter(i => i.section === 'Snacks & Desserts');
+  let orderedItems = [...filteredItems];
 
-  // Function to sort items: put selected category items at top
+  const beveragesItems = orderedItems.filter(i => i.section === 'Beverages');
+  const snacksItems = orderedItems.filter(i => i.section === 'Snacks & Desserts');
+
   function sortBySelectedCategory(items, selectedCat) {
     if (selectedCat === 'all') return items;
-    return [...items].sort((a, b) => {
+    return items.sort((a, b) => {
       const aIsSelected = a.category === selectedCat;
       const bIsSelected = b.category === selectedCat;
       if (aIsSelected && !bIsSelected) return -1;
@@ -157,20 +160,6 @@ function renderMenu() {
   const sortedBev = sortBySelectedCategory(beveragesItems, selectedCat);
   const sortedSnacks = sortBySelectedCategory(snacksItems, selectedCat);
 
-  // Function to get image for category
-  function getCategoryImage(category) {
-    const images = {
-      "Tea Varieties": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format",
-      "Coffee": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format",
-      "Milkshakes": "https://images.unsplash.com/photo-1577805947697-89e18249d767?q=80&w=600&auto=format",
-      "Snacks": "https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=600&auto=format",
-      "Sandwich": "https://images.unsplash.com/photo-1551782450-17144efb5723?q=80&w=600&auto=format",
-      "Ice Cream": "https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?q=80&w=600&auto=format"
-    };
-    return images[category] || "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format"; // fallback
-  }
-
-  // Build section HTML
   function buildSectionHTML(items, sectionTitle, sectionIcon) {
     if (items.length === 0) return '';
     
@@ -184,10 +173,11 @@ function renderMenu() {
       <h2 class="section-title">${sectionIcon} ${sectionTitle}</h2>`;
     
     for (const [catName, catItems] of Object.entries(grouped)) {
-      const imageUrl = getCategoryImage(catName);
+      const catImage = getCategoryImage(catName);
       html += `<div class="category-group" data-category="${catName}">
         <h3>${catName}</h3>
-        <img src="${imageUrl}" class="food-image" alt="${catName}">`;
+        <img src="${catImage}" loading="lazy" class="food-image category-image" alt="${catName}">
+      `;
       catItems.forEach(item => {
         html += `
           <div class="menu-item" data-name="${item.name}" data-price="${item.price}">
@@ -215,7 +205,6 @@ function renderMenu() {
   
   menuContainer.innerHTML = finalHTML;
   
-  // Re-attach add to cart events
   document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.removeEventListener('click', addHandler);
     btn.addEventListener('click', addHandler);
@@ -233,7 +222,6 @@ function addHandler(e) {
   }
 }
 
-// Filter event handlers
 function handleFilter() {
   renderMenu();
 }
@@ -241,7 +229,6 @@ function handleFilter() {
 categorySelect.addEventListener('change', handleFilter);
 searchInput.addEventListener('input', handleFilter);
 
-// Order panel toggle
 const orderPanel = document.getElementById('orderPanel');
 const toggleBtn = document.getElementById('toggleOrderPanel');
 
@@ -273,14 +260,12 @@ function showPanel() {
 toggleBtn.addEventListener('click', togglePanel);
 openOrderPanelBtn.addEventListener('click', (e) => { e.preventDefault(); showPanel(); });
 
-// Initial panel state
 orderPanel.style.transform = 'scale(0.95)';
 orderPanel.style.opacity = '0';
 orderPanel.style.visibility = 'hidden';
 orderPanel.style.display = 'none';
 orderPanel.style.transition = '0.2s ease';
 
-// Glow effect for menu sections
 document.addEventListener('mousemove', (e) => {
   const sections = document.querySelectorAll('.menu-section');
   sections.forEach(section => {
@@ -295,7 +280,6 @@ document.addEventListener('mousemove', (e) => {
   });
 });
 
-// Top button functionality
 const topBtn = document.getElementById("topBtn");
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) topBtn.classList.add("show");
@@ -303,6 +287,6 @@ window.addEventListener("scroll", () => {
 });
 topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-// Initialize the app
 loadCart();
 renderMenu();
+updateCartUI();
