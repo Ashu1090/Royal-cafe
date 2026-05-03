@@ -73,17 +73,14 @@ const menuData = [
   { name: "Dates Cashew Shake", price: 90, category: "Milk, Honey & Dry Fruit Shakes" },
   { name: "Dates Almond Shake", price: 90, category: "Milk, Honey & Dry Fruit Shakes" },
   
-  // 4. Ice Cream Specials (17 items)
-  { name: "Vanilla Ice", price: 80, category: "Ice Cream Specials" },
-  { name: "Strawberry Ice", price: 80, category: "Ice Cream Specials" },
-  { name: "Pista ", price: 90, category: "Ice Cream Specials" },
-  { name: "Butter Scotch Shake", price: 90, category: "Ice Cream Specials" },
-  { name: "Chocolate Shake", price: 90, category: "Ice Cream Specials" },
-  { name: "Black Currant Shake", price: 90, category: "Ice Cream Specials" },
-  { name: "Mango Shake", price: 90, category: "Ice Cream Specials" },
-  { name: "Strawberry Shake", price: 70, category: "Ice Cream Specials" },
-  { name: "Custard Apple Shake", price: 70, category: "Ice Cream Specials" },
-  { name: "Butter Fruit Shake", price: 70, category: "Ice Cream Specials" },
+  // 4. Ice Cream Specials (14 items)
+  { name: "Vanilla Ice Cream Shake", price: 80, category: "Ice Cream Specials" },
+  { name: "Strawberry Ice Cream Shake", price: 80, category: "Ice Cream Specials" },
+  { name: "Pista Ice Cream Shake", price: 90, category: "Ice Cream Specials" },
+  { name: "Butter Scotch Ice Cream Shake", price: 90, category: "Ice Cream Specials" },
+  { name: "Chocolate Ice Cream Shake", price: 90, category: "Ice Cream Specials" },
+  { name: "Black Currant Ice Cream Shake", price: 90, category: "Ice Cream Specials" },
+  { name: "Mango Ice Cream Shake", price: 90, category: "Ice Cream Specials" },
   { name: "Vanilla Scoop", price: 60, category: "Ice Cream Specials" },
   { name: "Chocolate Scoop", price: 70, category: "Ice Cream Specials" },
   { name: "Strawberry Scoop", price: 60, category: "Ice Cream Specials" },
@@ -154,7 +151,7 @@ const menuData = [
   { name: "Kiwi Falooda", price: 130, category: "Falooda Specials" },
   { name: "Mango Falooda", price: 130, category: "Falooda Specials" },
   
-  // 11. Tender Coconut Specials (5 items)
+  // 11. Tender Coconut Specials (6 items)
   { name: "Tender Shake", price: 70, category: "Tender Coconut Specials" },
   { name: "Tender Mango", price: 90, category: "Tender Coconut Specials" },
   { name: "Tender Kajoor", price: 90, category: "Tender Coconut Specials" },
