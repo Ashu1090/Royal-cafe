@@ -279,27 +279,27 @@ const menuData = [
   { name: "Paneer Wrap Roll", price: 90, category: "Rolls & Shawarma Specials" }
 ];
 
-// Fast-loading, optimized category images (UPDATED)
+// Optimized LOCAL category images for mobile + fast loading
 const categoryImages = {
-  "Lime & Soda Specials": "https://images.unsplash.com/photo-1700150652637-c7fbe8459b39?w=400&h=250&fit=crop&auto=format",
-  "Fresh & Healthy Juices": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=250&fit=crop&auto=format",
-  "Milk, Honey & Dry Fruit Shakes": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=250&fit=crop&auto=format",
-  "Ice Cream Specials": "https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=400&h=250&fit=crop&auto=format",
-  "Malba Specials": "https://images.unsplash.com/photo-1546173159-3154f7e28d0f?w=400&h=250&fit=crop&auto=format",
-  "Chocolate Specials": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=250&fit=crop&auto=format",
-  "Mojito & Sarbath": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&h=250&fit=crop&auto=format",
-  "Kerala Special Milk": "https://images.unsplash.com/photo-1593198232412-c890e42b6a12?w=400&h=250&fit=crop&auto=format",
-  "Lassi Specials": "https://images.unsplash.com/photo-1692620609860-be6717812f71?w=400&h=250&fit=crop&auto=format",
-  "Falooda Specials": "https://images.unsplash.com/photo-1696487774083-44992ca48eb4?w=400&h=250&fit=crop&auto=format",
-  "Tender Coconut Specials": "https://images.unsplash.com/photo-1711974240644-a6fd77782b40?w=400&h=250&fit=crop&auto=format",
-  "Bread Omelette Specials": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=250&fit=crop&auto=format",
-  "Maggi Specials": "https://images.unsplash.com/photo-1585410304004-56ae05651552?w=400&h=250&fit=crop&auto=format",
-  "Fried Snacks & Starters": "https://images.unsplash.com/photo-1608219994488-cc269412b3e4?w=400&h=250&fit=crop&auto=format",
-  "Pizza Specials": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=250&fit=crop&auto=format",
-  "Pasta Specials": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=250&fit=crop&auto=format",
-  "Sandwich Specials": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=250&fit=crop&auto=format",
-  "Burger Specials": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=250&fit=crop&auto=format",
-  "Rolls & Shawarma Specials": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&h=250&fit=crop&auto=format"
+  "Lime & Soda Specials": "./image/lime-soda-specials.webp",
+  "Fresh & Healthy Juices": "./image/fresh-healthy-juices.webp",
+  "Milk, Honey & Dry Fruit Shakes": "./image/milk-honey-dryfruit-shakes.webp",
+  "Ice Cream Specials": "./image/icecream-specials.webp",
+  "Malba Specials": "./image/malba-specials.webp",
+  "Chocolate Specials": "./image/chocolate-specials.webp",
+  "Mojito & Sarbath": "./image/mojito-sarbath.webp",
+  "Kerala Special Milk": "./image/kerala-special-milk.webp",
+  "Lassi Specials": "./image/lassi-specials.webp",
+  "Falooda Specials": "./image/falooda-specials.webp",
+  "Tender Coconut Specials": "./image/tender-coconut-specials.webp",
+  "Bread Omelette Specials": "./image/sandwich-specials.webp",
+  "Maggi Specials": "./image/maggi-specials.webp",
+  "Fried Snacks & Starters": "./image/fried-snacks-starters.webp",
+  "Pizza Specials": "./image/pizza-specials.webp",
+  "Pasta Specials": "./image/pasta-specials.webp",
+  "Sandwich Specials": "./image/sandwich-specials.webp",
+  "Burger Specials": "./image/burger-specials.webp",
+  "Rolls & Shawarma Specials": "./image/rolls-shawarma-specials.webp"
 };
 
 // Get unique categories for dropdown
